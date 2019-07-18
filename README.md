@@ -19,7 +19,7 @@ Include now :
 
 8. Stack
 
-9.Today did some ubantu thing ,include: ssr, deepin-wine, wechat, gnome tweak , linux is better than windows for me now ,maybe some days I'll be back to windows for job ,but now I really enjoy coding and playing in ubantu
+9. Today did some ubantu thing ,include: ssr, deepin-wine, wechat, gnome- tweak , linux is better than windows for me now ,maybe some days I'll be back to windows for job ,but now I really enjoy coding and playing in ubantu
 
 
 Keep Learning !!
