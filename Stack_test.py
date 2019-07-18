@@ -58,40 +58,7 @@ class CircualDoubleLinkedlist(object):
             headnode.prev = node
             self.root.next = node
         self.length += 1
-"""
 
-# 此处的pop() 和 popleft()是针对实现一，实线二方法更为准确
-
-    def popleft(self):
-        '''
-        删除头节点
-        '''
-        if len(self) <= 0:
-            raise Exception("pop from an empty list")
-        else:
-            headnode = self.root.next
-            self.root.next = headnode.next
-            headnode.next.prev = self.root                       
-            value = headnode.value
-            del headnode   
-            self.length -= 1
-            return value
-
-    def pop(self):
-        '''
-        删除尾节点
-        '''
-        if len(self) <= 0:
-            raise Exception("pop from an empty list")
-        else:
-            tailnode = self.root.prev
-            self.root.prev = tailnode.prev
-            tailnode.prev.next = self.root
-            value = tailnode.value
-            del tailnode
-            self.length -= 1
-            return value
-"""
     def remove(self, node):      # O(1)  node not value 
         if node is self.root:
             return 
@@ -197,7 +164,23 @@ class Stack(object):
         return len(self._item_deque)
     
     def pop(self):
-        return _item_deque.pop()
+        return self._item_deque.pop()
 
     def push(self, value):
-        return _item_deque.push(value)
+        return self._item_deque.append(value)
+
+def test_stack():
+    s = Stack()
+    for i in range(3):
+        s.push(i)
+
+    assert len(s) == 3
+    assert s.pop() == 2 
+    assert s.pop() == 1
+    assert s.pop() == 0
+
+
+    import pytest
+    with pytest.raises(Exception) as excinfo:
+        s.pop() 
+    assert 'empty' in str(excinfo.value)
