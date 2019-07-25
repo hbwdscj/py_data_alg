@@ -127,51 +127,52 @@ class HashTable(object):
             if slot not in (HashTable.UNUSED, HashTable.EMPTY):
                 yield slot.key
 
-###########################
-#以下为dict实现 
-###########################
-class DictADT(HashTable):
-    def __setitem__(self, key, value):  
-        self.add(key, value)
+##########################################
+#  集合的实现
+##########################################
 
-    def __getitem__(self, key):
-        if key not in self:
-            raise KeyError()
-        else:
-            return self.get(key)
-
-    def _iter_slot(self):
-        for slot in self._table:
-            if slot not in (HashTable.EMPTY, HashTable.UNUSED):
-                yield slot
-
-    def items(self):
-        for slot in self._iter_slot():
-            yield (slot.key, slot.value)
-        
-    def keys(self):
-        for slot in self._iter_slot():
-            yield (slot.key)
-
-    def values(self):
-        for slot in self._iter_slot():
-            yield (slot.value)
-
-def test_dictadt():
-    import random 
-    d = DictADT()
-
-    d['a'] = 1
-    assert d['a'] == 1
-    d.remove('a')
-
-    l = list(range(30))
-    random.shuffle(l)
-    for i in l:
-        d.add(i, i)
+class SetADT(HashTable):
     
-    for i in range(30):
-        assert d.get(i) == i
+    def add(self, key):
+        return super(SetADT, self).add(key, True)   #set中add元素只需要add key，因此此处将value设为True，表示有这个元素
 
-    assert sorted(list(d.keys())) == sorted(l)
+    def __and__(self, other_set):
+        new_set = SetADT()
+        for element_a in self:
+            if element_a in other_set:
+                new_set.add(element_a)
+        return new_set
+    
+    def __sub__(self, other_set):
+        new_set = SetADT()
+        for element_a in self:
+            if element_a not in other_set:
+                new_set.add(element_a)
+        return new_set
+
+    def __or__(self, other_set):
+        new_set = SetADT()  
+        for element_a in self:
+            new_set.add(element_a)
+        for element_b in other_set:
+            new_set.add(element_b)  
+        return new_set
+
+def test_set_adt():
+    sa = SetADT()
+    sa.add(1)
+    sa.add(2)
+    sa.add(3)
+    assert 1 in sa    # 测试  __contains__ 方法，实现了 add 和 __contains__，集合最基本的功能就实现啦
+
+    sb = SetADT()
+    sb.add(3)
+    sb.add(4)
+    sb.add(5)
+
+    assert sorted(list(sa & sb)) == [3]
+    assert sorted(list(sa - sb)) == [1, 2]
+    assert sorted(list(sa | sb)) == [1, 2, 3, 4, 5]
+
+
 

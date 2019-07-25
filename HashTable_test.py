@@ -43,10 +43,10 @@ class HashTable(object):
 
     @property
     def _local_factor(self):
-        return self.length / float(len(self._talble))
+        return self.length / float(len(self._table))
 
     def __len__(self):
-        return len(self)
+        return self.length
 
     def _hash(self, key):
         return abs(hash(key)) % len(self._table)
@@ -64,8 +64,6 @@ class HashTable(object):
                 index = (index*5 +1 ) % _len
         return None
 
-    def _slot_can_insert(self, index):
-        return (self._table[index] is HashTable.EMPTY or HashTable.UNUSED)
 
     def _find_slot_for_insert(self, key):
         index = self._hash(key)    
@@ -73,6 +71,9 @@ class HashTable(object):
         while not self._slot_can_insert(index):
             index = (index*5 + 1) % _len
         return index
+
+    def _slot_can_insert(self, index):
+        return (self._table[index] is HashTable.EMPTY or self._table[index] is HashTable.UNUSED)
 
     def __contains__(self, key):     #in operator
         index = self._find_key(key)
@@ -86,11 +87,12 @@ class HashTable(object):
             return False
         else:
             index = self._find_slot_for_insert(key)
-            self.table[index] = Slot(key ,value)
+            self._table[index] = Slot(key ,value)
             self.length += 1
             if self._local_factor >= 0.8:
                 self._rehash()  
             return True
+
     def _rehash(self,):
         old_table = self._table
         newsize = len(self._table) * 2
@@ -106,9 +108,10 @@ class HashTable(object):
     def get(self, key, default=None):
         index = self._find_key(key)
         if index is None:
-            return None
-        return index
-
+            return default
+        else:   
+            return self._table[index].value
+            
     def remove(self, key):
         index = self._find_key(key)
         if index is None:
@@ -123,7 +126,6 @@ class HashTable(object):
         for slot in self._table:
             if slot not in (HashTable.UNUSED, HashTable.EMPTY):
                 yield slot.key
-
 
 def test_hash_table():
     h = HashTable()
@@ -140,13 +142,12 @@ def test_hash_table():
     assert sorted(list(h)) == ['b', 'c']
 
     n = 50
+
     for i in range(n):
         h.add(i, i)
+    return h
 
-    for i in range(n):
-        assert h.get(i) == i
 
-test_hash_table()
-print(list(h))
+
 
 

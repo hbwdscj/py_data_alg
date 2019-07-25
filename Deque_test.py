@@ -58,41 +58,8 @@ class CircualDoubleLinkedlist(object):
             headnode.prev = node
             self.root.next = node
         self.length += 1
-"""
 
-# 此处的pop() 和 popleft()是针对实现一，实线二方法更为准确
-
-    def popleft(self):
-        '''
-        删除头节点
-        '''
-        if len(self) <= 0:
-            raise Exception("pop from an empty list")
-        else:
-            headnode = self.root.next
-            self.root.next = headnode.next
-            headnode.next.prev = self.root                       
-            value = headnode.value
-            del headnode   
-            self.length -= 1
-            return value
-
-    def pop(self):
-        '''
-        删除尾节点
-        '''
-        if len(self) <= 0:
-            raise Exception("pop from an empty list")
-        else:
-            tailnode = self.root.prev
-            self.root.prev = tailnode.prev
-            tailnode.prev.next = self.root
-            value = tailnode.value
-            del tailnode
-            self.length -= 1
-            return value
-"""
-    def remove(self, node):      # O(1)  node not value 
+    def remove(self, node):    # O(1)  node not value 
         if node is self.root:
             return 
         else:
@@ -169,6 +136,12 @@ class Deque(object):
 #################################
 # 以下为Deque实现2
 #################################
+class FullError(Exception):
+    pass
+
+class EmptyError(Exception):
+    pass    
+
 class Deque(CircualDoubleLinkedlist):
     
     def pop(self):
@@ -192,11 +165,11 @@ class Deque(CircualDoubleLinkedlist):
 def test_deque():
     deq = Deque()
     
-    deq.push(0)
-    deq.pushleft(1)
-    deq.push(2)
-    deq.pushleft(3)
-    deq.pushleft(4)
+    deq.append(0)
+    deq.appendleft(1)
+    deq.append(2)
+    deq.appendleft(3)
+    deq.appendleft(4)
 
     assert len(deq) == 5
     
