@@ -23,5 +23,8 @@ Include now :
 
 10. HashTable(for me sometime: 哈希表的hash方法由hash函数来定义，解决hash冲突的方法在python中有定义，load factor >=0.8 时要rehash，rehash方法python中定义，我理解的删除复杂度为O(1),插入复杂度为O(1) )
 
+11. Dict ADT (Dict为python内置字典结构，本质是用hashtable实现，方法有items, keys, values,内部结构为键值对)
+
+12. Set ADT (Set同为hashtable实现，理解为默认value为1的键值对，方法有add,以及与或非逻辑运算)
 
                          Keep Learning !!
