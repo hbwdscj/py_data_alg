@@ -158,7 +158,7 @@ class DictADT(HashTable):
             yield (slot.value)
 
 def test_dictadt():
-    import random 
+    import random
     d = DictADT()
 
     d['a'] = 1
