@@ -34,7 +34,7 @@ def binary_search_recursion(sorted_value, beg, end, val):
 if sorted_value[mid] == val:
     return mid
 elif sorted_value[mid] < val:
-    return binary_search_recursion(sorted_value[mid:end], val) 此处切片就会厂商也能够一个新的list，导致下标改变
+    return binary_search_recursion(sorted_value[mid:end], val) 此处切片就会产生一个新的list，导致下标改变
 
 """
 
