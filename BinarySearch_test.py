@@ -29,8 +29,8 @@ def binary_search_recursion(sorted_value, beg, end, val):
         return binary_search_recursion(sorted_value, beg, mid, val)
 """
 
-#错误记录：第一版实现出现错误是因为将sorted_value切片传入新的递归函数，导致序列的下标志
-#出现改变，因此返回的mid值不是最开始sorted_value的下标，循环部分代码如下:
+# 错误记录：第一版实现出现错误是因为将sorted_value切片传入新的递归函数，导致序列的下标
+# 出现改变，因此返回的mid值不是最开始sorted_value的下标，循环部分代码如下:
 if sorted_value[mid] == val:
     return mid
 elif sorted_value[mid] < val:
