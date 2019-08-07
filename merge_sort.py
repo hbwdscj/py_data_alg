@@ -37,10 +37,3 @@ def merge_sort(seq):
         # 合并两个有序数组
         new_seq = merge_sorted_list(left_half, right_half)
         return new_seq
-
-
-
-seq = list(range(20))
-random.shuffle(seq)
-print(merge_sort(seq))
-
