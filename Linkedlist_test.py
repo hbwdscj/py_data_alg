@@ -44,6 +44,12 @@ class Linkedlist(object):
     def __iter__(self):
         for node in self.iter_node():
             yield node.value
+    
+    def isEmpty(self):
+        if self.root.next is None:
+            return True
+        else:
+            return False
 
     def iter_node(self):
         currnode = self.root.next
@@ -123,6 +129,7 @@ def test_linkdelist():
 
     ll.clear()
     assert len(ll) == 0
+    assert ll.isEmpty is True
 
 
 test_linkdelist()

@@ -1,5 +1,7 @@
 import random
 
+# 归并排序
+
 def merge_sorted_list(sorted_a, sorted_b):
     len_a, len_b = len(sorted_a), len(sorted_b)
     a = b = 0
