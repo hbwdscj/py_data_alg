@@ -15,6 +15,9 @@ def binary_search(sorted_list, val):
             beg = mid - 1
     return -1
 """
+
+# 以下为规定递归深度，默认为1000
+
 import sys
 sys.setrecursionlimit(1000)
 def binary_search_recursion(sorted_value, beg, end, val):  
