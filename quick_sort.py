@@ -1,5 +1,3 @@
-
-
 def quick_sort_1(seq):
     if len(seq) <= 1:
         return seq
@@ -16,14 +14,14 @@ def quick_sort_1(seq):
 
 
 def partition_inplace(seq, beg, end):
-    pivot_index = beg 
+    pivot_index = beg
     pivot = seq[pivot_index]
     left = pivot_index + 1
-    right = end - 1  
+    right = end - 1
 
     while True:
         while left <= right and seq[left] < pivot:
-            left += 1                  
+            left += 1
         while right >= left and seq[right] > pivot:
             right -= 1
         if left > right:
@@ -31,20 +29,28 @@ def partition_inplace(seq, beg, end):
         else:
             seq[left], seq[right] = seq[right], seq[left]
     seq[pivot_index], seq[right] = seq[right], seq[pivot_index]
-    return right # 返回主元的位置
+    return right  # 返回主元的位置
 
 
-def quick_sort_inplace(seq, beg, end): # 左闭右开区间
+def quick_sort_inplace(seq, beg, end):  # 左闭右开区间
+    """
+    最坏的情况复杂度为O(n^2)
+    一般情况为O(nlgn)
+    """
     if beg < end:
         pivot = partition_inplace(seq, beg, end)
         quick_sort_inplace(seq, beg, pivot)
-        quick_sort_inplace(seq, pivot+1, end)
+        quick_sort_inplace(seq, pivot + 1, end)
 
 
 def test_partition_inplace():
-    l = [3, 4, 1, 2,]
+    l = [
+        3,
+        4,
+        1,
+        2,
+    ]
     assert partition_inplace(l, 0, len(l)) == 2
-    
 
 
 def test_quick_sort():
@@ -54,6 +60,7 @@ def test_quick_sort():
     print(quick_sort_1(seq))
     assert quick_sort_1(seq) == sorted(seq)
 
+
 def test_quick_sort_inplace():
     import random
     seq = list(range(10))
@@ -62,5 +69,5 @@ def test_quick_sort_inplace():
     print(seq)
     assert seq == sorted(seq)
 
-    
+
 test_partition_inplace()
