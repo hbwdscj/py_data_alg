@@ -1,3 +1,5 @@
 [
-  "quick_sort.py::test_quick_sort"
+  "quick_sort.py::test_partition_inplace",
+  "quick_sort.py::test_quick_sort",
+  "quick_sort.py::test_quick_sort_inplace"
 ]
