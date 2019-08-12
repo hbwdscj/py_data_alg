@@ -29,4 +29,8 @@ Include now :
 
 13. Recursion and Hanota 
 
+14. bubble_select_insertion sort
+
+15. merge sort
+
                          Keep Learning !!
