@@ -39,3 +39,6 @@ def merge_sort(seq):
         # 合并两个有序数组
         new_seq = merge_sorted_list(left_half, right_half)
         return new_seq
+
+    # 归并排序不是inplace的，需要新建存储空间new_seq
+    
