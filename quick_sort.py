@@ -14,5 +14,5 @@ def test_quick_sort():
     import random
     seq = list(range(10))
     random.shuffle(seq)
-    print(quick_sort(seq))
     assert quick_sort(seq) == sorted(seq)
+    
