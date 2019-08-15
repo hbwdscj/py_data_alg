@@ -20,16 +20,20 @@ def binary_search(sorted_list, val):
 
 import sys
 sys.setrecursionlimit(1000)
-def binary_search_recursion(sorted_value, beg, end, val):  
+
+
+def binary_search_recursion(sorted_value, beg, end, val):
     if beg >= end:
         return -1
-    mid = int((beg+end)/2)
+    mid = int((beg + end) / 2)
     if sorted_value[mid] == val:
         return mid
     elif sorted_value[mid] < val:
-        return binary_search_recursion(sorted_value, mid+1, end, val)
+        return binary_search_recursion(sorted_value, mid + 1, end, val)
     else:
         return binary_search_recursion(sorted_value, beg, mid, val)
+
+
 """
 
 # 错误记录：第一版实现出现错误是因为将sorted_value切片传入新的递归函数，导致序列的下标
@@ -47,4 +51,4 @@ b2 = binary_search_recursion(a, 0, len(a), 1)
 b3 = binary_search_recursion(a, 0, len(a), 2)
 b4 = binary_search_recursion(a, 0, len(a), 3)
 b5 = binary_search_recursion(a, 0, len(a), 10)
-print("%s, %s, %s, %s, %s" %(b1, b2, b3, b4, b5))
+print("%s, %s, %s, %s, %s" % (b1, b2, b3, b4, b5))
