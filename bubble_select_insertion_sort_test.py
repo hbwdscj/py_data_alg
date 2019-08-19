@@ -42,11 +42,11 @@ def test_bubble_sort():
 
 def insertion_sort(seq):
     n = len(seq)
-    for i in range(1, n):
+    for i in range(1, n): 
         print(seq)
         value = seq[i]
         pos = i
-        while pos > 0 and value < seq[pos-1]: # seq[pos-1] > value说明后面的比前面大
+        while pos > 0 and value < seq[pos-1]:  # seq[pos-1] > value说明后面的比前面大
             seq[pos] = seq[pos-1]
             pos -= 1
         seq[pos] = value
