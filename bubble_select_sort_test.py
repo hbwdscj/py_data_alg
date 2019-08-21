@@ -34,11 +34,6 @@ def select_sort(seq):
             seq[min_index], seq[i] = seq[i], seq[min_index]
     print(seq)
 
-def test_bubble_sort():
-    seq = list(range(10))
-    random.shuffle(seq)
-    select_sort(seq)
-    assert seq == sorted(seq)
 
 def insertion_sort(seq):
     n = len(seq)
